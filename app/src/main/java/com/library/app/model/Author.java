@@ -1,15 +1,18 @@
 package com.library.app.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "author")
-public class author {
+public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,8 +21,10 @@ public class author {
     private String name;
     @Column(name = "country", length = 50, nullable = false, unique = true)
     private String country;
+    @OneToMany()
+    private List<Book> books;
     
-    public author() {
+    public Author() {
     }
 
     public Long getId() {
