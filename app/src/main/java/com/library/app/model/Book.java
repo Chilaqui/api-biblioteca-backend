@@ -2,8 +2,12 @@ package com.library.app.model;
 
 import java.util.List;
 
+import com.library.app.model.enums.Genre;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,6 +31,10 @@ public class Book {
     @JoinColumn(name = "autor_id", nullable = false)
     private Author author;
 
+    @Enumerated(EnumType.STRING)
+    private Genre gender;
+
+    
     @Column(name = "description", length = 255,  nullable = true)
     private String description;
 
@@ -79,6 +87,13 @@ public class Book {
     }
     public void setStock(int stock) {
         this.stock = stock;
+    }
+    public Genre getGender() {
+        return gender;
+    }
+
+    public void setGender(Genre gender) {
+        this.gender = gender;
     }
 
 }
