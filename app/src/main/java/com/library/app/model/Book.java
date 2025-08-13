@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -15,12 +16,18 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "name", length = 50, nullable = false, unique = true)
     private String name;
-    @ManyToOne
-    @Column(name = "author", length = 50, nullable = false, unique = true)
-    private String author;
+
+    @ManyToOne()
+    @JoinColumn(name = "autor_id", nullable = false)
+    private Author author;
+
+    @Column(name = "description", length = 255,  nullable = true)
     private String description;
+
+    @Column(name = "stock", nullable = false)
     private int stock;
     
     public Book() {
@@ -38,10 +45,10 @@ public class Book {
     public void setName(String name) {
         this.name = name;
     }
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
-    public void setAuthor(String author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
     public String getDescription() {
