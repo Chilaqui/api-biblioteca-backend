@@ -1,5 +1,7 @@
 package com.library.app.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -29,7 +32,21 @@ public class Book {
 
     @Column(name = "stock", nullable = false)
     private int stock;
+
     
+    @OneToMany(mappedBy = "book")
+    private List<Loan> loans;
+    
+    //Getters and Setters
+
+    public List<Loan> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(List<Loan> loans) {
+        this.loans = loans;
+    }
+
     public Book() {
     }
 
